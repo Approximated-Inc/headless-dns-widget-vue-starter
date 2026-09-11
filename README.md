@@ -14,6 +14,16 @@ This starter targets the upcoming headless DNS API release. The hosted `headless
 
 [Try the Vue demo](https://cloud.approximated.app/dnswidget/demo/headless/vue) to explore this interface without installing the starter or supplying an API key. It uses an example CNAME target and Approximated’s public demo token endpoint. The hosted demo becomes available with the headless API release described above.
 
+## Three interface designs
+
+Use the **Simple**, **Dashboard**, and **Guided** tabs to explore three ways to present the same live DNS setup:
+
+- **Simple** keeps the domain form, provider instructions, and verification in a calm stack of cards.
+- **Dashboard** places the domain controls beside a compact record workspace, with copyable field values and expandable provider instructions.
+- **Guided** adds numbered sections and progress based on the current session. Preparing instructions does not mark a DNS change complete; the record step completes when verification matches.
+
+Switching designs keeps the entered domain, active requests, provider results, and verification state. The tabs support the left and right arrow keys, Home, and End. Every design includes the same provider messages, automatic setup links, manual steps, retries, and DNS checks.
+
 ## Run locally
 
 Requirements: Node.js 22.12 or newer, npm, and an Approximated cluster API key for live requests. CI uses the Node version in `.node-version`.
@@ -47,10 +57,11 @@ The browser loads `https://cloud.approximated.app/dnswidget/headless.v1.js`. You
 - `src/`: the Vue interface and entry point.
 - `shared/session.js`: records to request, session state, token expiry, cancellation, and protection against stale responses.
 - `shared/browser.js`: the public CNAME target and headless client adapter.
-- `shared/styles.css`: the interface styles, including the Approximated carnation palette.
+- `shared/styles.css`: the three interface designs, including the default Approximated carnation palette.
+- `shared/design.js`: design choices, keyboard navigation, and accurate guided progress.
 - `token-server.mjs`: `POST /api/dns-widget-token`, which returns only the token and disables response caching.
 - `server.mjs`: the local Vite and token server.
-- `test/`: token endpoint and session lifecycle regression tests.
+- `test/`: token endpoint, session lifecycle, design navigation, and presentation regression tests.
 
 Edit the `records` array in `shared/session.js` to request the A, CNAME, or TXT records your app needs. The default requests one CNAME for the domain the customer enters. In this API, `@` means the **full supplied domain**, including any subdomain. For `shop.customer.com`, Cloudflare's display name is `shop`.
 
