@@ -31,7 +31,7 @@ const groups = computed(() => props.result.domains.map((group) => ({
         <ul class="automatic-actions">
           <li v-for="(record, index) in group.automaticRecords" :key="index">
             <span class="automatic-record-label">{{ record.type }} {{ recordAddress(record) }}</span>
-            <ExternalLink class="automatic-setup-button" :href="automaticUrl(record)">{{ group.automaticRecords.length === 1 ? `Automatic setup with ${group.providerName}` : `Automatic setup: ${record.type} ${recordAddress(record)} with ${group.providerName}` }}<span class="visually-hidden"> (opens in a new tab)</span></ExternalLink>
+            <ExternalLink class="automatic-setup-button" :href="automaticUrl(record)" :aria-label="`Set up automatically: ${record.type} ${recordAddress(record)} with ${group.providerName} (opens in a new tab)`">Set up automatically</ExternalLink>
           </li>
         </ul>
         <p class="automatic-help">The provider opens in a new tab.</p>

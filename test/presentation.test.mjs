@@ -113,7 +113,8 @@ for (const design of ['simple', 'dashboard', 'guided']) {
     assert.match(html, /<h3[^>]*>Set up DNS automatically<\/h3>/);
     const links = automaticLinks(html);
     assert.equal(links.length, 1);
-    assert.match(links[0], /Automatic setup with Cloudflare/);
+    assert.match(links[0], />Set up automatically<\/a>/);
+    assert.match(links[0], /aria-label="Set up automatically: CNAME shop.customer.com with Cloudflare/);
     assert.match(links[0], /href="https:\/\/dash.cloudflare.com\/connect\?record=shop"/);
     assert.match(links[0], /target="_blank"/);
     assert.match(links[0], /rel="noopener noreferrer"/);
@@ -198,5 +199,5 @@ for (const design of ['simple', 'dashboard', 'guided']) {
 
 test('automatic setup uses the returned provider name', async (t) => {
   const html = await renderComponent(t, '/ProviderRecords.vue', { design: 'simple', result: dnsResult([dnsRecord()], { name: 'GoDaddy' }) });
-  assert.match(automaticLinks(html)[0] || '', /Automatic setup with GoDaddy/);
+  assert.match(automaticLinks(html)[0] || '', /aria-label="Set up automatically: CNAME shop.customer.com with GoDaddy/);
 });
