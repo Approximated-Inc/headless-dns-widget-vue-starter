@@ -51,10 +51,10 @@ async function changeDesignWithKeyboard(event) {
           </div>
         </section>
         <section class="guide-section" :data-step-state="steps[1].state" aria-labelledby="records-step-heading">
-          <GuideHeading id="records-step-heading" :number="2" title="Add your DNS records" :step="steps[1]" />
+          <GuideHeading id="records-step-heading" :number="2" title="Set up your DNS records" :step="steps[1]" />
           <div class="guide-content">
             <ProviderRecords v-if="state.result" :result="state.result" :design="design" />
-            <div v-else class="panel empty-state"><h3>Your records will appear here</h3><p>Get setup instructions for your domain to see the DNS provider and the exact values to add.</p></div>
+            <div v-else class="panel empty-state"><h3>Your records will appear here</h3><p>Get setup instructions for your domain to see your DNS provider and available setup options.</p></div>
           </div>
         </section>
         <section class="guide-section" :data-step-state="steps[2].state" aria-labelledby="verify-step-heading">
@@ -71,9 +71,9 @@ async function changeDesignWithKeyboard(event) {
           <SessionNotices :state="state" :busy="busy" @retry="retry" />
         </div>
         <div class="setup-workspace">
-          <div v-if="design === 'dashboard'" class="workspace-header"><div><p class="eyebrow">Record workspace</p><h2>DNS setup</h2><p>Use your provider’s values below, then check the published records.</p></div></div>
+          <div v-if="design === 'dashboard'" class="workspace-header"><div><p class="eyebrow">Record workspace</p><h2>DNS setup</h2><p>Set up your DNS records below, then check the published records.</p></div></div>
           <ProviderRecords v-if="state.result" :result="state.result" :design="design" />
-          <div v-else-if="design === 'dashboard'" class="panel empty-state"><h3>Your records will appear here</h3><p>Get setup instructions for your domain to see the DNS provider and the exact values to add.</p></div>
+          <div v-else-if="design === 'dashboard'" class="panel empty-state"><h3>Your records will appear here</h3><p>Get setup instructions for your domain to see your DNS provider and available setup options.</p></div>
           <VerificationPanel v-if="state.result" :state="state" :busy="busy" @verify="session.verify" @reload="start" />
         </div>
       </div>

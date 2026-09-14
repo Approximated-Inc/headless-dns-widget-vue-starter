@@ -4,7 +4,7 @@ Build a DNS setup flow in your own Vue interface using the [Approximated headles
 
 This is a **headless** integration. Vue renders the interface; Approximated supplies provider-specific instructions and DNS verification results as JSON. It does not embed the ready-made widget or an iframe.
 
-The starter includes provider instructions, copyable record values, optional automatic setup links, verification results, retries, and a local server endpoint that creates short-lived widget tokens.
+The starter includes provider instructions, copyable record values, prominent automatic setup actions when supported, verification results, retries, and a local server endpoint that creates short-lived widget tokens.
 
 ## Availability
 
@@ -22,7 +22,7 @@ Use the **Simple**, **Dashboard**, and **Guided** tabs to explore three ways to 
 - **Dashboard** places the domain controls beside a compact record workspace, with copyable field values and expandable provider instructions.
 - **Guided** adds numbered sections and progress based on the current session. Preparing instructions does not mark a DNS change complete; the record step completes when verification matches.
 
-Switching designs keeps the entered domain, active requests, provider results, and verification state. The tabs support the left and right arrow keys, Home, and End. Every design includes the same provider messages, automatic setup links, manual steps, retries, and DNS checks.
+Switching designs keeps the entered domain, active requests, provider results, and verification state. The tabs support the left and right arrow keys, Home, and End. Every design puts supported automatic setup first, with manual alternatives, provider messages, retries, and DNS checks.
 
 ## Run locally
 
@@ -67,7 +67,7 @@ Edit the `records` array in `shared/session.js` to request the A, CNAME, or TXT 
 
 Render each returned field step's `label` and `value`: provider display values can differ from the request. An empty field value means leave that field blank. TTL values may be labels such as `Auto` or `1 Hour`.
 
-The interface renders text, links, and fields without inserting raw HTML. Manual steps remain available when automatic setup is unavailable. Verification shows the record address, expected value, actual values, and match state. Customers can retry partial or failed checks.
+The interface renders text, links, and fields without inserting raw HTML. When a record has a supported Domain Connect link, automatic setup is the first action. Review and approve the change at your provider, then return to verify. Each button sets up only its identified record; any remaining manual records are called out separately. Manual alternatives, including dashboard field values, stay under **Set up manually instead**. Records without supported automation show their manual setup instructions. Verification shows the record address, expected value, actual values, and match state. Customers can retry partial or failed checks.
 
 ## Integrate with your application
 

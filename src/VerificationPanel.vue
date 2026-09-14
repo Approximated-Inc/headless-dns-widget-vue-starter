@@ -7,7 +7,7 @@ defineEmits(['verify', 'reload']);
 <template>
   <section class="panel verification-panel" :aria-labelledby="guided ? 'verify-step-heading' : 'verify-heading'">
     <h2 v-if="!guided" id="verify-heading">Check your DNS changes</h2>
-    <p>Save the record at your DNS provider, then check it here. DNS updates can take time to become visible.</p>
+    <p>After completing setup at your DNS provider, check your records here. DNS updates can take time to become visible.</p>
     <div class="actions">
       <button id="verify-records" type="button" @click="$emit('verify')" :disabled="busy || state.phase === 'complete' || state.error?.restart">
         {{ state.phase === 'checking' ? 'Checking DNS…' : state.phase === 'complete' ? 'DNS verified' : 'Check DNS records' }}
