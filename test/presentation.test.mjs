@@ -113,7 +113,7 @@ for (const design of ['simple', 'dashboard', 'guided']) {
     assert.match(html, /<h3[^>]*>Set up DNS automatically<\/h3>/);
     const links = automaticLinks(html);
     assert.equal(links.length, 1);
-    assert.match(links[0], />Set up automatically<\/a>/);
+    assert.equal(links[0].replace(/<[^>]*>/g, ""), "Set up automatically");
     assert.match(links[0], /aria-label="Set up automatically: CNAME shop.customer.com with Cloudflare/);
     assert.match(links[0], /href="https:\/\/dash.cloudflare.com\/connect\?record=shop"/);
     assert.match(links[0], /target="_blank"/);
